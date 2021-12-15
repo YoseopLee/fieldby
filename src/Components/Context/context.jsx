@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 
 const AppContext = React.createContext();
 
@@ -9,7 +9,7 @@ const AppProvider = ({ children }) => {
     const openSidebar = () => {
         setIsSidebarOpen(true);
     };
-    const closeSiderbar = () => {
+    const closeSidebar = () => {
         setIsSidebarOpen(false);
     };
 
@@ -26,7 +26,7 @@ const AppProvider = ({ children }) => {
                 isSidebarOpen,
                 isModalOpen,
                 openSidebar,
-                closeSiderbar,
+                closeSidebar,
                 openModal,
                 closeModal,
             }}

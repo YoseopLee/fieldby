@@ -1,16 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { useGlobalContext } from '../../Context/context';
 
 
 const MainBar= () => {
     
-    const [isFocus, setIsFocus] = useState(false);
-
-    const onNavBar = () => {
-
-    }
-
+    const { openSidebar } = useGlobalContext();
 
     return (
         <MainBarCSS>
@@ -20,7 +16,7 @@ const MainBar= () => {
                 </Link>
                 <div className="header-wrapper">
                     <img src="images/search.png" alt="search" className="header-search"/>
-                    <img src="images/hamburger.png" alt="menu" className="header-menu" onClick={onNavBar}/>
+                    <img src="images/hamburger.png" alt="menu" className="header-menu" onClick={openSidebar}/>
                 </div>
             </div>
         </MainBarCSS>
