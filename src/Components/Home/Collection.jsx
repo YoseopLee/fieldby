@@ -1,4 +1,4 @@
-import './Collection.css';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 function Collection({id, title, contents, collection_type}){

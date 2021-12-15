@@ -5,7 +5,7 @@ import {
 } from "react-router-dom";
 import MainBar from "./Components/Common/Mainbar/MainBar";
 import Home from "./Pages/Home/Home";
-import Style from "./Pages/Style/Style";
+import Post from "./Pages/Post/Post";
 
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
       <MainBar />
       <Routes>
         <Route path="/" element={<Home/>}/>
-        <Route path="/style" element={<Style/>} />
+        <Route path="/style" element={<Post/>} />
       </Routes>
     </Router>
   );

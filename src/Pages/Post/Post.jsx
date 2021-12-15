@@ -1,20 +1,20 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import StyleCompo from "../../Components/Style/StyleCompo";
+import PostEach from "../../Components/Post/Post";
 
-function Style(){
+const Post = () => {
     const [loading, setLoading] = useState(true);
-    const [styles, setStyles] = useState([]); 
+    const [posts, setPosts] = useState([]); 
     
     useEffect(() => {
-        const getStyles = async() => {
+        const getPosts = async() => {
             const json = await axios.get(`http://localhost:8000/api/v1/posts/`);
             console.log(json.data);
             console.log(json.data.results);
-            setStyles(json.data.results);
+            setPosts(json.data.results);
             setLoading(false);
         };
-        getStyles();
+        getPosts();
     }, []) // dependencies empty
 
     return (
@@ -22,14 +22,14 @@ function Style(){
             { loading ? (<h1>Loading...</h1>
             ) : (
                 <div>
-                    {styles.map((style, id)=>(
-                        <StyleCompo
+                    {posts.map((post, id)=>(
+                        <PostEach
                         key={id}
-                        text={style.text}
-                        created={style.created}
-                        image={style.image}
-                        image2={style.image2}
-                        image3={style.image3}
+                        text={post.text}
+                        created={post.created}
+                        image={post.image}
+                        image2={post.image2}
+                        image3={post.image3}
                         />
                     ))}                    
                 </div>
@@ -38,4 +38,4 @@ function Style(){
     );
 }
 
-export default Style;
+export default Post;
