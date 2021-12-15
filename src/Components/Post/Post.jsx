@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-function StyleCompo({ text, created, image, image2, image3, image4, image5, image6, image7, image8, image9, image10 }) {
+const PostEach = ({ text, created, image, image2, image3, image4, image5, image6, image7, image8, image9, image10 }) => {
     return (
         <div>
             <p>{text}</p>
@@ -12,7 +12,7 @@ function StyleCompo({ text, created, image, image2, image3, image4, image5, imag
     )
 }
 
-StyleCompo.propTypes = {
+PostEach.propTypes = {
     text : PropTypes.string.isRequired,
     created : PropTypes.string.isRequired,
     image : PropTypes.string.isRequired,
@@ -23,4 +23,4 @@ StyleCompo.propTypes = {
     image6 : PropTypes.string,
 }
 
-export default StyleCompo;
+export default PostEach;
