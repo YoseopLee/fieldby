@@ -43,6 +43,7 @@ const NavBarCSS = styled.div`
         display: grid;
         grid-template-rows: auto 1fr auto;
         row-gap: 1rem;
+        z-index : 9999;
         transition : .3s;
         transform : translate(100%);
         .navbar-header{

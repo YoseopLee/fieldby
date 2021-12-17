@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import styled from "styled-components";
 import PostEach from "../../Components/Post/Post";
 
 const Post = () => {
@@ -18,7 +19,7 @@ const Post = () => {
     }, []) // dependencies empty
 
     return (
-        <div>
+        <PostContainerCSS>
             { loading ? (<h1>Loading...</h1>
             ) : (
                 <div>
@@ -34,8 +35,12 @@ const Post = () => {
                     ))}                    
                 </div>
             )}
-        </div>
+        </PostContainerCSS>
     );
 }
+
+const PostContainerCSS = styled.div`
+    margin-top : 60px;
+`
 
 export default Post;

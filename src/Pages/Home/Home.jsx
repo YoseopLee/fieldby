@@ -1,11 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import styled from "styled-components";
 import Collection from "../../Components/Home/Collection";
 
 //axios.defaults.xsrfCookieName="csrftoken";
 //axios.defaults.xsrfHeaderName="X-CSRFToken";
 
-function Home(){
+
+const Home = () => {
     const [loading, setLoading] = useState(true);
     const [collections, setCollections] = useState([]);
     
@@ -14,7 +16,11 @@ function Home(){
         const getCollections = async() => {
             try {
                 const json = await axios.get(`http://localhost:8000/api/v1/collections/`);
-                setCollections(json.data.collections);
+                console.log(json.data);
+                console.log(json.data.results);
+                console.log(json.data.results.items)
+                console.log(json.data.results.posts)
+                setCollections(json.data.results);
                 setLoading(false);
             } catch (error) {
                 console.log(error);
@@ -25,24 +31,27 @@ function Home(){
     }, []); // dependencies empty
 
     return (
-        <div>
+        <HomeContainerCSS>
             { loading ? ( <h1>Loading...</h1>
             ) : (
                 <div>
-                    {collections.map((collection) => (
+                    {collections.map((collection, id) => (
                        <div>
                            <Collection 
-                                key={collection.id}
-                                id={collection.id} 
+                                key={id}
                                 title={collection.title}
                                 contents={collection.contents}
-                                collection_type={collection.collection_type}/>
+                            />
                        </div> 
                     ))}
                 </div>
             )}
-        </div>
+        </HomeContainerCSS>
     );
 }
+
+const HomeContainerCSS = styled.div`
+    margin-top : 60px;
+`
 
 export default Home;

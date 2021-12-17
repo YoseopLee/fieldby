@@ -6,13 +6,6 @@ function Collection({id, title, contents, collection_type}){
         <div>
             <h1>{title}</h1>
             <span>{contents}</span>
-            <div>
-                {collection_type.map((c) => (
-                    (
-                        <span key={c}>{c}</span>
-                    )
-                ))}
-            </div>
         </div>
     );
 }

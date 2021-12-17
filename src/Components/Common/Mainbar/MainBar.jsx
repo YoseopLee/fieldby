@@ -36,6 +36,7 @@ const MainBarCSS = styled.div`
         align-items: center;
         padding-left: 18px;
         padding-right: 18px;
+        z-index : 1000;
         .header-logo{
             height: 42px;
         }
