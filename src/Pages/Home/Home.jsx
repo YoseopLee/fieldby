@@ -1,7 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import MainBar from "../../Components/Common/Mainbar/MainBar";
+import Navbar from "../../Components/Common/Navbar/Navbar";
 import Collection from "../../Components/Home/Collection";
+
 
 //axios.defaults.xsrfCookieName="csrftoken";
 //axios.defaults.xsrfHeaderName="X-CSRFToken";
@@ -31,6 +34,9 @@ const Home = () => {
     }, []); // dependencies empty
 
     return (
+        <>
+        <MainBar />
+        <Navbar />
         <HomeContainerCSS>
             { loading ? ( <h1>Loading...</h1>
             ) : (
@@ -47,6 +53,7 @@ const Home = () => {
                 </div>
             )}
         </HomeContainerCSS>
+        </>
     );
 }
 
