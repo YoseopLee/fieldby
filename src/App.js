@@ -3,22 +3,21 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import MainBar from "./Components/Common/Mainbar/MainBar";
-import Navbar from "./Components/Common/Navbar/Navbar";
+
 import Home from "./Pages/Home/Home";
 import Item from "./Pages/Item/Item";
 import Post from "./Pages/Post/Post";
+import PostEach from "./Pages/Post/PostEach";
 import Store from "./Pages/Store/Store";
 
 
 function App() {
   return (
     <Router>
-      <MainBar />
-      <Navbar />
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/style" element={<Post/>} />
+        <Route path="/post/:id" element={<PostEach/>} />
         <Route path="/store" element={<Store/>} />
         <Route path="/item/:id" element={<Item/>} />
       </Routes>

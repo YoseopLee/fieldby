@@ -1,10 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import PostEach from "../../Components/Post/Post";
+import MainBar from "../../Components/Common/Mainbar/MainBar";
+import Navbar from "../../Components/Common/Navbar/Navbar";
+import PostList from "../../Components/Post/PostList";
 
 const Post = () => {
-    const [loading, setLoading] = useState(true);
     const [posts, setPosts] = useState([]); 
     
     useEffect(() => {
@@ -13,29 +14,24 @@ const Post = () => {
             console.log(json.data);
             console.log(json.data.results);
             setPosts(json.data.results);
-            setLoading(false);
         };
         getPosts();
     }, []) // dependencies empty
 
     return (
+        <>
+        <MainBar />
+        <Navbar />
         <PostContainerCSS>
-            { loading ? (<h1>Loading...</h1>
-            ) : (
-                <div>
-                    {posts.map((post, id)=>(
-                        <PostEach
-                        key={id}
-                        text={post.text}
-                        created={post.created}
-                        image={post.image}
-                        image2={post.image2}
-                        image3={post.image3}
-                        />
-                    ))}                    
-                </div>
-            )}
+            {posts.map((post)=>(
+                <PostList
+                    key={post.id}
+                    id={post.id}
+                    coverImg={post.image}
+                />
+            ))}                   
         </PostContainerCSS>
+        </>
     );
 }
 

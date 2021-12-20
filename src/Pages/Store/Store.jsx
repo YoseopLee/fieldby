@@ -4,6 +4,8 @@ import styled from "styled-components";
 import BrandName from "../../Components/Store/Brand";
 import ItemList from "../../Components/Store/ItemList";
 import StoreBanner from "../../Components/Store/StoreBanner";
+import MainBar from "../../Components/Common/Mainbar/MainBar";
+import Navbar from "../../Components/Common/Navbar/Navbar";
 
 
 const Store = () => {
@@ -23,6 +25,9 @@ const Store = () => {
     }, []);
 
     return (
+        <>
+        <MainBar />
+        <Navbar />
         <StoreContainerCSS>
             <StoreBanner />
             <BrandName />
@@ -36,6 +41,7 @@ const Store = () => {
                 />
             ))}
         </StoreContainerCSS>
+        </>
     );
 }
 

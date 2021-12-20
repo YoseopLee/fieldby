@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useGlobalContext } from '../../Context/context';
 
 
-const MainBar= () => {
+const MainBar = () => {
     
     const { openSidebar } = useGlobalContext();
 
