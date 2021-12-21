@@ -11,7 +11,7 @@ const PostEach = () => {
     useEffect(() => {
         const getPostEaches = async() => {
             try {
-                const json = await axios.get(`http://localhost:8000/api/v1/posts/${id}/`);
+                const json = await axios.get(`https://fair.way.golf/api/v1/posts/${id}/`);
                 console.log(json.data);
                 setPostEach(json.data);
             } catch (error) {
