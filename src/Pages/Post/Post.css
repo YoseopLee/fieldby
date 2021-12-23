@@ -1,0 +1,32 @@
+button{
+    padding: 5px 20px;
+    margin: 10px;
+    cursor: pointer;
+    position: relative;
+    color: #000;
+}
+.my-masonry-grid{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: auto;
+    margin-top: 60px;
+    margin-left: 4px;
+    text-align: center;
+}
+.my-masonry-grid_column{
+    background-clip: padding-box;
+}
+.post{
+    width: calc(100% - 4px);
+}
+.post-image{
+    width : 100%;
+    height : 100%;
+}
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}

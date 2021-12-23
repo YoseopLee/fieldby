@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const PostList = ({id, coverImg}) => {
+const PostList = ({ id , coverImg}) => {
     return(
+        <>
         <PostListCSS>
             <div className="post">
                 <Link to = {`/post/${id}`}>
@@ -14,6 +15,8 @@ const PostList = ({id, coverImg}) => {
                 </Link>
             </div>
         </PostListCSS>
+        
+        </>
     );
 }
 
