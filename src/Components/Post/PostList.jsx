@@ -3,15 +3,20 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const PostList = ({id, coverImg}) => {
+const PostList = ({ id , coverImg}) => {
     return(
+        <>
         <PostListCSS>
             <div className="post">
                 <Link to = {`/post/${id}`}>
-                    <img src={coverImg} className="post-image" alt=""/>
+                    <div className='image-box'>
+                        <img src={coverImg} className="post-image" alt=""/>
+                    </div>
                 </Link>
             </div>
         </PostListCSS>
+        
+        </>
     );
 }
 
@@ -21,12 +26,13 @@ PostList.propTypes = {
 }
 
 const PostListCSS = styled.div`
+    width : calc(50% - 2px);
     margin-top : 60px;
     .post{
-        .post-image{
-            height : 500px;
-            width : 100%;
-        }
+    }
+    .post-image{
+        width : 100%;
+        height : 100%;
     }
 
 `;

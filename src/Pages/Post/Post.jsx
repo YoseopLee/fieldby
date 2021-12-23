@@ -1,42 +1,79 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-import styled from "styled-components";
+import React, { useEffect, useRef, useState } from "react";
+import Masonry from "react-masonry-css";
+import { Link } from "react-router-dom";
 import MainBar from "../../Components/Common/Mainbar/MainBar";
 import Navbar from "../../Components/Common/Navbar/Navbar";
-import PostList from "../../Components/Post/PostList";
+import FadeLoader from "react-spinners/FadeLoader";
+import './Post.css';
+import Spinner from "../../Components/Common/Spinner/Spinner";
 
 const Post = () => {
-    const [posts, setPosts] = useState([]); 
+    const [posts, setPosts] = React.useState([]);
+    const [pageNumber, setPageNumber] = React.useState(1);
+    const [loading, setLoading] = useState(false);
     
     useEffect(() => {
-        const getPosts = async() => {
-            const json = await axios.get(`http://localhost:8000/api/v1/posts/`);
+        const getPosts = async(pageNumber) => {
+            const json = await axios.get(`https://fair.way.golf/api/v1/posts/?page=${pageNumber}`);
             console.log(json.data);
             console.log(json.data.results);
-            setPosts(json.data.results);
+            setPosts((prev) => [...prev, ...json.data.results]);
+            setLoading(true);
         };
-        getPosts();
-    }, []) // dependencies empty
+        getPosts(pageNumber);
+    }, [pageNumber]) // dependencies empty
+
+    const loadMore = () => {
+        setPageNumber(prevPageNumber => prevPageNumber + 1)
+    }
+
+    const pageEnd = useRef();
+    
+    useEffect(() => {
+        if(loading){
+            const observer = new IntersectionObserver((entries) => {
+                console.log(entries);
+                if(entries[0].isIntersecting){
+                    loadMore();
+                }
+            },{threshold:0});
+
+            observer.observe(pageEnd.current);
+        }
+    }, [loading]);
+
+    const breakpoints = {
+        default: 4,
+        1100: 3,
+        700 : 2 
+    }
 
     return (
         <>
         <MainBar />
         <Navbar />
-        <PostContainerCSS>
+        <Masonry
+            breakpointCols={breakpoints}
+            className="my-masonry-grid"
+            columnClassName="my-masonry-grid_column"
+        >       
             {posts.map((post)=>(
-                <PostList
-                    key={post.id}
-                    id={post.id}
-                    coverImg={post.image}
-                />
-            ))}                   
-        </PostContainerCSS>
+                    <div className="post" key={post.id}>
+                        <Link to = {`/post/${post.id}`}>
+                            <div className='image-box'>
+                                <img src={post.image} className="post-image" alt=""/>
+                            </div>
+                        </Link>
+                    </div>
+            ))}
+            
+        </Masonry>
+        <div className="loading" ref={pageEnd}>
+            <Spinner />
+        </div>
         </>
     );
 }
-
-const PostContainerCSS = styled.div`
-    margin-top : 60px;
-`
 
 export default Post;
