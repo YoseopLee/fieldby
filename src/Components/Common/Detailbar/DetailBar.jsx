@@ -31,7 +31,7 @@ const DetailBarCSS = styled.div`
     display : flex;
     align-items : center;
     .back-logo{
-        height : 30px;
+        height : 24px;
     }
 `
 
