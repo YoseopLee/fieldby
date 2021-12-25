@@ -5,12 +5,16 @@ button{
     position: relative;
     color: #000;
 }
-
+ul{
+    margin-block-start: 0;
+    margin-block-end: 0;
+    padding-inline-start: 0;
+}
 .my-masonry-grid{
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    margin-top: 30px;
+    margin-top: 10px;
     text-align: center;
     margin-left: 1px;
 }
@@ -31,24 +35,18 @@ button{
     align-items: center;
     margin-top: 20px;
 }
-.pop-new{
-    margin-top : 100px;
+.sort-list{
+    margin-top : 60px;
+    width: calc(100% - 12px);
     display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    width: 100%;
-    font-size: 20px;
+    justify-content: flex-end;
+}
+.updown-btn{
+    height : 12px;
 }
 .pop-tab{
-    padding : 16px;
-    width: 81px;
-    border: 1px solid #212121;
-    border-radius: 12px;
+    
 }
 .new-tab{
-    padding: 16px;
-    width: 81px;
-    border : 1px solid #212121;
-    border-radius: 12px;
+    
 }
