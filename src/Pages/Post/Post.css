@@ -5,20 +5,25 @@ button{
     position: relative;
     color: #000;
 }
+ul{
+    margin-block-start: 0;
+    margin-block-end: 0;
+    padding-inline-start: 0;
+}
 .my-masonry-grid{
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    width: auto;
-    margin-top: 60px;
-    margin-left: 4px;
+    margin-top: 10px;
     text-align: center;
+    margin-left: 1px;
 }
 .my-masonry-grid_column{
     background-clip: padding-box;
 }
 .post{
-    width: calc(100% - 4px);
+    width: calc(100% - 1px);
+    margin-bottom: -2px;
 }
 .post-image{
     width : 100%;
@@ -29,4 +34,19 @@ button{
     justify-content: center;
     align-items: center;
     margin-top: 20px;
+}
+.sort-list{
+    margin-top : 60px;
+    width: calc(100% - 12px);
+    display: flex;
+    justify-content: flex-end;
+}
+.updown-btn{
+    height : 12px;
+}
+.pop-tab{
+    
+}
+.new-tab{
+    
 }
