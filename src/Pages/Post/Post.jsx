@@ -16,10 +16,10 @@ const Post = () => {
                 <img src="images/updown.png" className="updown-btn" alt="" onClick={() => setShowList(!showList)}/>
                 {
                     showList && 
-                    <ul>
-                        <Link to=""><li className="pop-tab">인기</li></Link>
-                        <Link to="new"><li className="new-tab">최신</li></Link>
-                    </ul>
+                    <div className="tab-wrapper">
+                        <Link to=""><div className="pop-tab">인기</div></Link>
+                        <Link to="new"><div className="new-tab">최신</div></Link>
+                    </div>
                 }
             </div>
             <Routes>

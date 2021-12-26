@@ -38,11 +38,16 @@ ul{
 .sort-list{
     margin-top : 60px;
     width: calc(100% - 12px);
-    display: flex;
+    display: grid;
+    flex-direction: column;
     justify-content: flex-end;
 }
 .updown-btn{
     height : 12px;
+    width: 12px;
+}
+.tab-wrapper{
+    z-index: 1000;
 }
 .pop-tab{
     
