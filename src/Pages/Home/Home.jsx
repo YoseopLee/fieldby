@@ -4,6 +4,7 @@ import styled from "styled-components";
 import MainBar from "../../Components/Common/Mainbar/MainBar";
 import Navbar from "../../Components/Common/Navbar/Navbar";
 import Collection from "../../Components/Home/Collection";
+import HomeBanner from "../../Components/Home/HomeBanner";
 
 
 //axios.defaults.xsrfCookieName="csrftoken";
@@ -11,24 +12,19 @@ import Collection from "../../Components/Home/Collection";
 
 
 const Home = () => {
-    const [loading, setLoading] = useState(true);
     const [collections, setCollections] = useState([]);
     
 
     useEffect(() => {
         const getCollections = async() => {
             try {
-                const json = await axios.get(`http://localhost:8000/api/v1/collections/`);
+                const json = await axios.get(`https://fair.way.golf/api/v1/collections/`);
                 console.log(json.data);
                 console.log(json.data.results);
-                console.log(json.data.results.items)
-                console.log(json.data.results.posts)
                 setCollections(json.data.results);
-                setLoading(false);
             } catch (error) {
                 console.log(error);
             }
-           
         };
         getCollections();
     }, []); // dependencies empty
@@ -38,20 +34,17 @@ const Home = () => {
         <MainBar />
         <Navbar />
         <HomeContainerCSS>
-            { loading ? ( <h1>Loading...</h1>
-            ) : (
+        <HomeBanner />
                 <div>
-                    {collections.map((collection, id) => (
-                       <div>
-                           <Collection 
-                                key={id}
-                                title={collection.title}
-                                contents={collection.contents}
-                            />
-                       </div> 
+                    {collections.map((collection) => (
+                        <Collection 
+                            key={collection.id}
+                            id={collection.id}
+                            title={collection.title}
+                            contents={collection.contents}
+                        />
                     ))}
                 </div>
-            )}
         </HomeContainerCSS>
         </>
     );

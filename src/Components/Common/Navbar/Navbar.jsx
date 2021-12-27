@@ -25,8 +25,13 @@ const Navbar = () => {
                     </Link>
                     <Link to="/mypage">
                         <li className="lists" onClick={closeSidebar}>마이페이지</li>
-                    </Link>
+                    </Link>    
                 </ul>
+                <Link to="/login">
+                    <div className="login-container">
+                        <div className="login-area" onClick={closeSidebar}>로그인</div>    
+                    </div>           
+                </Link>
             </aside>
         </NavBarCSS>
     )
@@ -71,6 +76,20 @@ const NavBarCSS = styled.div`
     }
     .show-slider{
         transform:translate(0);
+    }
+    .login-container{
+        margin-left : 40px;
+        width : calc(100% - 80px);
+    }
+    .login-area{
+        border : 1px solid #22BAA8;
+        border-radius : 12px;
+        padding : 16px;
+        color : #22BAA8;
+        font-size : 20px;
+        font-weight : bold; 
+        margin-bottom : 60px;
+        text-align : center;
     }
 `;
 
