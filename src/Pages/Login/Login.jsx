@@ -13,7 +13,7 @@ const Login = () => {
                 <img src="images/fielddbylogo.png" alt="" className="header-logo"/>
             </div>
             <div className="input-container">
-                <input type="email" placeholder="아이디" className="id-input"></input>
+                <input type="email" placeholder="이메일" className="id-input"></input>
                 <input type="password" placeholder="비밀번호" className="pw-input"></input>
             </div>
             <div className="btn-container">
