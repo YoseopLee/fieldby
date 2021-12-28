@@ -1,0 +1,35 @@
+@keyframes loading {
+    0% {
+        transform: translateX(0);
+    }
+    50%,
+    100% {
+        transform: translateX(calc(50% - 1px));
+    }
+}
+.skeleton-post-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.skeleton-post-wrapper{
+    width: calc(50% - 1px);
+    height: auto;
+}
+.skeleton-post-image-box{
+    height: 200px;
+    background-color: #f2f2f2;
+    position: relative;
+    margin-bottom: 2px;
+}
+
+.skeleton-post-image-box::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100px;
+    background: linear-gradient(to right, #f2f2f2, #ddd, #f2f2f2);
+    animation: loading 2s infinite linear;
+}
