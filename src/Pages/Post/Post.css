@@ -35,23 +35,14 @@ ul{
     align-items: center;
     margin-top: 20px;
 }
-.sort-list{
-    margin-top : 60px;
-    width: calc(100% - 12px);
-    display: grid;
-    flex-direction: column;
-    justify-content: flex-end;
-}
-.updown-btn{
-    height : 12px;
-    width: 12px;
-}
 .tab-wrapper{
-    z-index: 1000;
+    margin-top : 60px;
+    display: flex;
+    justify-content: space-evenly;
+    margin-left: 80px;
+    width: calc(100% - 160px);
 }
-.pop-tab{
-    
-}
-.new-tab{
-    
+.tab{
+    padding : 8px;
+    font-size : 16px;
 }

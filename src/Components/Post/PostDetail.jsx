@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { Carousel } from 'react-responsive-carousel';
-import styles from 'react-responsive-carousel/lib/styles/carousel.min.css';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import styled from 'styled-components';
 
 const PostDetail = ({ coverImg, coverImg2, coverImg3 ,text }) => {

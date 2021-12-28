@@ -56,7 +56,7 @@ const PostNew = () => {
                 <div className="post" key={newPost.id}>
                     <Link to={`/post/${newPost.id}`}>
                         <div className="image-box">
-                            <img src={newPost.image} alt="newpost-image" className="post-image" />
+                            <img src={newPost.image} alt="newpost" className="post-image" />
                         </div>
                     </Link>
                 </div>

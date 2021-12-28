@@ -12,7 +12,7 @@ const Item = () => {
     useEffect(() => {
         const getItems = async() => {
             try {
-                const json = await axios.get(`http://localhost:8000/api/v1/items/${id}/`);
+                const json = await axios.get(`https://fair.way.golf/api/v1/items/${id}/`);
                 console.log(json.data);
                 setItem(json.data);
             } catch (error) {
