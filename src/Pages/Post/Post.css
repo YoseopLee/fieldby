@@ -16,13 +16,13 @@ ul{
     display: flex;
     margin-top: 10px;
     text-align: center;
-    margin-left: 1px;
+    justify-content: space-between;
 }
 .my-masonry-grid_column{
     background-clip: padding-box;
+    width: calc(50% - 1px) !important;
 }
 .post{
-    width: calc(100% - 1px);
     margin-bottom: -2px;
 }
 .post-image{
@@ -33,7 +33,8 @@ ul{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 .tab-wrapper{
     margin-top : 60px;

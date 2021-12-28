@@ -2,13 +2,14 @@ import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import Masonry from "react-masonry-css";
 import { Link } from "react-router-dom";
+import PostSkeleton from "../../Components/Common/Skeleton/PostSkeleton";
 import Spinner from "../../Components/Common/Spinner/Spinner";
 import './Post.css';
 
 const PostPop = () => {
     const [popPosts, setPopPosts] = React.useState([]);
     const [pageNumber, setPageNumber] = React.useState(1);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const getPopPosts = async(pageNumber) => {
@@ -16,7 +17,7 @@ const PostPop = () => {
             console.log(json.data);
             console.log(json.data.results);
             setPopPosts((prev) => [...prev, ...json.data.results]);
-            setLoading(true);
+            setLoading(false);
         };
         getPopPosts(pageNumber);
     }, [pageNumber]) // dependencies 1
@@ -42,26 +43,37 @@ const PostPop = () => {
 
     const breakpoints = {
         default : 3,
-        700: 2
+        700 : 2
     }
+
+    const PostSkeletonContainer = new Array(10).fill(1).map((_, i) => {
+        return <PostSkeleton key={i}/>   
+    })
 
     return (
         <>
-        <Masonry
-            breakpointCols={breakpoints}
-            className="my-masonry-grid"
-            columnClassName="my-masonry-grid_column"
-        >
-            {popPosts.map((popPost) => (
-                <div className="post" key={popPost.id}>
-                    <Link to={`/post/${popPost.id}`}>
-                        <div className="image-box">
-                            <img src={popPost.image} alt="newpostimage" className="post-image" />
-                        </div>
-                    </Link>
+        {loading 
+            ? (
+                <div className="skeleton-post-container">
+                    {PostSkeletonContainer}
                 </div>
-            ))}
-        </Masonry>
+            ) : (
+            <Masonry
+                breakpointCols={breakpoints}
+                className="my-masonry-grid"
+                columnClassName="my-masonry-grid_column"
+            >            
+                {popPosts.map((popPost) => (
+                    <div className="post" key={popPost.id}>
+                        <Link to={`/post/${popPost.id}`}>
+                            <div className="image-box">
+                                <img src={popPost.image} alt="newpostimage" className="post-image" />
+                            </div>
+                        </Link>
+                    </div>
+                ))}
+            </Masonry>
+        )}
         <div className="loading" ref={pageEnd}>
             <Spinner />
         </div>

@@ -6,9 +6,7 @@ const CollectionPostDetail = ({ id, postImages }) => {
     return (
         <CollectionPostDetailCSS>
             <Link to={`/post/${id}`}>
-            <div className="post-each" style={{backgroundImage : `url(${postImages})`}}>
-                <div className="cover"></div>
-            </div>
+                <div className="post-each" style={{backgroundImage : `url(${postImages})`}}></div>
             </Link>
             
         </CollectionPostDetailCSS>
