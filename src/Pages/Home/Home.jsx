@@ -4,6 +4,7 @@ import styled from "styled-components";
 import MainBar from "../../Components/Common/Mainbar/MainBar";
 import Navbar from "../../Components/Common/Navbar/Navbar";
 import Collection from "../../Components/Home/Collection";
+import Footer from "../../Components/Home/Footer";
 import HomeBanner from "../../Components/Home/HomeBanner";
 
 
@@ -40,12 +41,14 @@ const Home = () => {
                         <Collection 
                             key={collection.id}
                             id={collection.id}
+                            type={collection.collection_type}
                             title={collection.title}
                             contents={collection.contents}
                         />
                     ))}
                 </div>
         </HomeContainerCSS>
+        <Footer />
         </>
     );
 }
