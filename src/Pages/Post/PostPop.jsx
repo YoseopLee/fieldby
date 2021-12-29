@@ -46,7 +46,7 @@ const PostPop = () => {
         700 : 2
     }
 
-    const PostSkeletonContainer = new Array(10).fill(1).map((_, i) => {
+    const PostSkeletonContainer = new Array(8).fill(1).map((_, i) => {
         return <PostSkeleton key={i}/>   
     })
 

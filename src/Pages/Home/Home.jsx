@@ -6,6 +6,7 @@ import Navbar from "../../Components/Common/Navbar/Navbar";
 import Collection from "../../Components/Home/Collection";
 import Footer from "../../Components/Home/Footer";
 import HomeBanner from "../../Components/Home/HomeBanner";
+import Spinner from "../../Components/Common/Spinner/Spinner";
 
 
 //axios.defaults.xsrfCookieName="csrftoken";
@@ -14,6 +15,7 @@ import HomeBanner from "../../Components/Home/HomeBanner";
 
 const Home = () => {
     const [collections, setCollections] = useState([]);
+    const [loading, setLoading] = useState(true);
     
 
     useEffect(() => {
@@ -23,6 +25,7 @@ const Home = () => {
                 console.log(json.data);
                 console.log(json.data.results);
                 setCollections(json.data.results);
+                setLoading(false);
             } catch (error) {
                 console.log(error);
             }
@@ -36,6 +39,11 @@ const Home = () => {
         <Navbar />
         <HomeContainerCSS>
         <HomeBanner />
+        {loading ? (
+            <div className="loading">
+                <Spinner />
+            </div>
+        ) : (   
                 <div>
                     {collections.map((collection) => (
                         <Collection 
@@ -47,6 +55,8 @@ const Home = () => {
                         />
                     ))}
                 </div>
+        )}
+        
         </HomeContainerCSS>
         <Footer />
         </>
@@ -55,6 +65,9 @@ const Home = () => {
 
 const HomeContainerCSS = styled.div`
     margin-top : 60px;
+    ::-webkit-scrollbar{
+        display : none;
+    }
 `
 
 export default Home;

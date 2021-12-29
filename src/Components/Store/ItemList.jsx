@@ -8,9 +8,7 @@ const ItemList = ({id, coverImg, brand ,name, price}) => {
         <ItemListCSS>
             <Link to={`/item/${id}`}>
             <div className="item">   
-                <div className="item-thumbnail">
-                    <img src={coverImg} className="item-image" alt={name}/>
-                </div>
+                <div className="item-thumbnail" style={{backgroundImage : `url(${coverImg})`}}></div>
                 <div className="item-contents">
                     <div className="brand">{brand}</div>
                     <div className="item-name">{name}</div>
@@ -44,11 +42,15 @@ const ItemListCSS = styled.div`
         flex-direction : column;
         padding-bottom : 16px;
         .item-thumbnail{
-            position : relative;
-            .item-image{
-                margin : 0 auto;
-                width : 100%;
-            }
+            text-align:center;
+            overflow-y:hidden;
+            position:relative;
+            /* opacity:0; */
+            background-size:cover;
+            background-repeat:no-repeat;
+            background-position:center;
+            width : 100%;
+            height : 210px;
         }
         .item-contents{
             padding-left : 16px;

@@ -6,12 +6,13 @@ import StoreBanner from "../../Components/Store/StoreBanner";
 import MainBar from "../../Components/Common/Mainbar/MainBar";
 import Navbar from "../../Components/Common/Navbar/Navbar";
 import Spinner from "../../Components/Common/Spinner/Spinner";
+import StoreSkeleton from "../../Components/Common/Skeleton/StoreSkeleton";
 
 
 const Store = () => {
     const [itemlists, setItemLists] = useState([]);
     const [pageNumber, setPageNumber] = useState(1);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const getItemList = async(pageNumber) => {
@@ -20,7 +21,7 @@ const Store = () => {
                 console.log(json.data);
                 console.log(json.data.results);
                 setItemLists((prev) => [...prev, ...json.data.results]);
-                setLoading(true);
+                setLoading(false);
             } catch (error) {
                 console.log(error);
             }
@@ -51,27 +52,30 @@ const Store = () => {
         <>
         <MainBar />
         <Navbar />
-        <StoreContainerCSS>
-            <StoreBanner />
-            <div className="store-line"></div>
-            <div className="item-container">
-                {itemlists.map((itemlist) => (
-                    <ItemList 
-                        key={itemlist.id}
-                        id={itemlist.id}
-                        coverImg={itemlist.image}
-                        name={itemlist.name}
-                        brand={itemlist.brand.name}
-                        price={itemlist.price}
-                    />
-                ))}
-            </div>
-            
-            <div className="loading" ref={pageEnd}>
+        {loading ? (
+            <StoreSkeleton />
+        ) : (
+            <StoreContainerCSS>
+                <StoreBanner />
+                <div className="item-container">
+                    {itemlists.map((itemlist) => (
+                        <ItemList 
+                            key={itemlist.id}
+                            id={itemlist.id}
+                            coverImg={itemlist.image}
+                            name={itemlist.name}
+                            brand={itemlist.brand.name}
+                            price={itemlist.price}
+                        />
+                    ))}
+                </div>
+            </StoreContainerCSS>
+        )}
+        <div className="loading" ref={pageEnd}>
                 <Spinner />
-            </div>
-        </StoreContainerCSS>
+        </div>
         </>
+
     );
 }
 

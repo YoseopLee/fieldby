@@ -21,7 +21,7 @@ const StoreBanner = () => {
 
     return(
         <StoreBannerCSS>
-            <Carousel autoPlay={true} infiniteLoop={true}>
+            <Carousel autoPlay={true}>
                     {storebanners.map((storebanner) => (
                         <div key={storebanner.id}>    
                             <img src={storebanner.image} alt=""/>

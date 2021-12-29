@@ -8,7 +8,6 @@ const CollectionPostDetail = ({ id, postImages }) => {
             <Link to={`/post/${id}`}>
                 <div className="post-each" style={{backgroundImage : `url(${postImages})`}}></div>
             </Link>
-            
         </CollectionPostDetailCSS>
     )
 }
@@ -18,7 +17,6 @@ const CollectionPostDetailCSS = styled.div`
         text-align:center;
         overflow-y:hidden;
         position:relative;
-        text-align:center;
         border-radius:6px;
         /* opacity:0; */
         background-size:cover;
@@ -27,13 +25,6 @@ const CollectionPostDetailCSS = styled.div`
         width : 204px;
         height : 250px;
         margin-right : 8px;
-        .cover{
-            width:100%;
-            height:100%;
-            position:absolute;
-            overflow:hidden;
-            text-align:center;	
-        }
     }
 `
 
