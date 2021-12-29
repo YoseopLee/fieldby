@@ -38,7 +38,7 @@ const MainBarCSS = styled.div`
         padding-right: 18px;
         z-index : 1000;
         .header-logo{
-            height: 42px;
+            height: 48px;
         }
         .header-wrapper{
             display: flex;

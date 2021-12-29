@@ -5,12 +5,14 @@ import axios from 'axios';
 import CollectionPostDetail from './CollectionPostDetail';
 import CollectionItemDetail from './CollectionItemDetail';
 import styled from 'styled-components';
+import CollectionSkeleton from '../Common/Skeleton/CollectionSkeleton';
 
 
 const Collection = ({ id, title, contents }) => {
     const [collectionPosts, setCollectionPosts] = useState([]);
     const [collectionItems, setCollectionItems] = useState([]);
     const [collectionStatus, setCollectionStatus] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const getCollectionDetails = async() => {
@@ -18,6 +20,7 @@ const Collection = ({ id, title, contents }) => {
                 // get 점검
                 const json = await axios.get(`https://fair.way.golf/api/v1/collections/${id}`);
                 console.log(json.data);
+                setLoading(false);
                 setCollectionStatus(json.data)
                 setCollectionPosts(json.data.posts);
                 setCollectionItems(json.data.items);
@@ -28,41 +31,47 @@ const Collection = ({ id, title, contents }) => {
         getCollectionDetails(id);
     }, [id]) 
 
+    const CollectionSkeletonContainer = new Array(2).fill(1).map((_, i) => {
+        return <CollectionSkeleton key={i} />
+    })
+
     return (
         <CollectionContainerCSS>
             <div className="collection-wrapper">
                 <div className="collection-title">{title}</div>
                 <div className="collection-subtitle">{contents}</div>
             </div>
-            {collectionStatus.collection_type === "style" ? (
-                <div className="post-container">
-                    {collectionPosts.map((collectionPost) => (
-                        <CollectionPostDetail
-                            key={collectionPost.id}
-                            id={collectionPost.id} 
-                            postImages={collectionPost.image}
-                        />
-                    ))}     
-                </div>
-                ) : (
-                    <div className="item-container">
-                        {collectionItems.map((collectionItem) => (
-                            <CollectionItemDetail 
-                                key={collectionItem.id}
-                                id={collectionItem.id}
-                                itemImages={collectionItem.image}
-                                brandName={collectionItem.brand.name}
-                                itemName={collectionItem.name}
-                                itemPrice={collectionItem.price}
+            {loading ? (
+                <div className="skeleton-collection-container">{CollectionSkeletonContainer}</div>
+            ) : (
+                <>
+                {collectionStatus.collection_type === "style" ? (
+                    <div className="post-container">
+                        {collectionPosts.map((collectionPost) => (
+                            <CollectionPostDetail
+                                key={collectionPost.id}
+                                id={collectionPost.id} 
+                                postImages={collectionPost.image}
                             />
-                        ))}    
+                        ))}     
                     </div>
-                )
-            }            
-            
-                       
-            
-                
+                    ) : (
+                        <div className="item-container">
+                            {collectionItems.map((collectionItem) => (
+                                <CollectionItemDetail 
+                                    key={collectionItem.id}
+                                    id={collectionItem.id}
+                                    itemImages={collectionItem.image}
+                                    brandName={collectionItem.brand.name}
+                                    itemName={collectionItem.name}
+                                    itemPrice={collectionItem.price}
+                                />
+                            ))}    
+                        </div>
+                    )
+                }
+                </>
+            )}    
         </CollectionContainerCSS>
     );
 }
