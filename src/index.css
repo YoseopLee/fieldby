@@ -44,6 +44,7 @@ a {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin-top: 10px;
 }
 .skeleton-post-wrapper{
   width: calc(50% - 1px);
@@ -92,20 +93,13 @@ a {
   background: linear-gradient(to right, #f2f2f2, #dcdcdc, #f2f2f2);
   animation: loading 3s infinite linear;
 }
-
-.skeleton-store-banner{
-  width: 100%;
-  height : 100px;
-  background-color: #f2f2f2;
-  margin-top: 60px;
-}
-
 .skeleton-store-item-wrapper{
   display: flex;
   flex-wrap: wrap;
   margin-top: 36px;
   justify-content: space-between;
 }
+
 .skeleton-store-item-each{
   display: flex;
   flex-direction: column;
@@ -142,19 +136,11 @@ a {
   background-color: #f2f2f2;
 }
 
-.thumbs-wrapper{
-  display : none;
+.home-banner-image{
+  width: 100%;
 }
-.control-dots{
-  display : none;
-}
-.control-arrow{
-  display : none;
-}
-.carousel-status{
-  text-shadow : none;
-  background-color : #747474;
-  right : 5px;
-  border-radius : 9px;
+
+.store-banner-image{
+  width: 100%;
 }
 

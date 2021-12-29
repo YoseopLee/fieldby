@@ -1,8 +1,12 @@
 import axios from "axios";
 import React from "react"
-import { Carousel } from "react-responsive-carousel";
+import SwiperCore, {Autoplay} from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper.scss";
 import { useEffect, useState } from "react/cjs/react.development";
 import styled from "styled-components";
+
+SwiperCore.use(Autoplay);
 
 const HomeBanner = () => {
     const [homeBanners, setHomeBanners] = useState([]);
@@ -17,13 +21,22 @@ const HomeBanner = () => {
 
     return (
         <HomeBannerCSS>
-            <Carousel autoPlay={true} infiniteLoop={true}>
-                {homeBanners.map((homeBanner) => (
-                    <div key={homeBanner.id}>
-                        <img src={homeBanner.image} alt=""/>
-                    </div>
-                ))}
-            </Carousel>
+            <Swiper
+                className="home-banner"
+                spaceBetween={50}
+                slidesPerView={1}
+                autoplay = {{ delay : 3000 }}
+            >
+                
+                    {homeBanners.map((homeBanner) => (
+                        <SwiperSlide>
+                            <div key={homeBanner.id}>
+                                <img src={homeBanner.image} alt="" className="home-banner-image"/>
+                            </div>
+                        </SwiperSlide>
+                    ))}
+                
+            </Swiper>
         </HomeBannerCSS>
     )
 }

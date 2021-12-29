@@ -26,10 +26,17 @@ const PostEach = () => {
         <DetailBar />
         <PostEachCSS>
             <PostDetail
-                coverImg = {postEach.image}
-                coverImg2 = {postEach.image2}
-                coverImg3 = {postEach.image3}
-                text = {postEach.text}
+                coverImg={postEach.image}
+                coverImg2={postEach.image2}
+                coverImg3={postEach.image3}
+                coverImg4={postEach.image4}
+                coverImg5={postEach.image5} 
+                coverImg6={postEach.image6}
+                coverImg7={postEach.image7}
+                coverImg8={postEach.image8}
+                coverImg9={postEach.image9}
+                coverImg10={postEach.image10}
+                text={postEach.text}
             />
         </PostEachCSS>
         </>

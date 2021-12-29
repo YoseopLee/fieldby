@@ -1,22 +1,91 @@
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import SwiperCore, { Pagination } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper.scss";
+import "swiper/components/pagination/pagination.scss"
 import styled from 'styled-components';
 
-const PostDetail = ({ coverImg, coverImg2, coverImg3 ,text }) => {
+SwiperCore.use(Pagination);
+
+const PostDetail = ({ coverImg, coverImg2, coverImg3, coverImg4, coverImg5, coverImg6, coverImg7, coverImg8, coverImg9, coverImg10 ,text }) => {
     return (
         <PostDetailCSS>
-            <Carousel showArrows={false}>
-                <div>
-                    <img src={coverImg} alt=""/>
-                </div>
-                <div>
-                    <img src={coverImg2} alt=""/>
-                </div>
-                <div>
-                    <img src={coverImg3} alt=""/>
-                </div>
-            </Carousel>
+            <Swiper
+                className='post-swiper'
+                pagination={{clickable : true}}
+            >
+                {coverImg !== null ? (
+                    <SwiperSlide>
+                        <img src={coverImg} alt=""/> 
+                    </SwiperSlide>
+                ) : (
+                    null
+                )}
+                {coverImg2 !== null ? (
+                    <SwiperSlide>
+                        <img src={coverImg2} alt=""/> 
+                    </SwiperSlide>
+                ) : (
+                    null
+                )} 
+                {coverImg3 !== null ? (
+                    <SwiperSlide>
+                        <img src={coverImg3} alt=""/> 
+                    </SwiperSlide>
+                ) : (
+                    null
+                )}
+                {coverImg4 !== null ? (
+                    <SwiperSlide>
+                        <img src={coverImg4} alt=""/> 
+                    </SwiperSlide>
+                ) : (
+                    null
+                )}
+                {coverImg5 !== null ? (
+                    <SwiperSlide>
+                        <img src={coverImg5} alt=""/> 
+                    </SwiperSlide>
+                ) : (
+                    null
+                )}
+                {coverImg6 !== null ? (
+                    <SwiperSlide>
+                        <img src={coverImg6} alt=""/> 
+                    </SwiperSlide>
+                ) : (
+                    null
+                )}
+                {coverImg7 !== null ? (
+                    <SwiperSlide>
+                        <img src={coverImg7} alt=""/> 
+                    </SwiperSlide>
+                ) : (
+                    null
+                )}
+                {coverImg8 !== null ? (
+                    <SwiperSlide>
+                        <img src={coverImg8} alt=""/> 
+                    </SwiperSlide>
+                ) : (
+                    null
+                )}
+                {coverImg9 !== null ? (
+                    <SwiperSlide>
+                        <img src={coverImg9} alt=""/> 
+                    </SwiperSlide>
+                ) : (
+                    null
+                )}
+                {coverImg10 !== null ? (
+                    <SwiperSlide>
+                        <img src={coverImg10} alt=""/> 
+                    </SwiperSlide>
+                ) : (
+                    null
+                )}
+            </Swiper>
             <p>{text}</p>
         </PostDetailCSS>
     )
@@ -34,7 +103,12 @@ PostDetail.propTypes = {
 }
 
 const PostDetailCSS = styled.div`
-    height : 100vh;
+    .swiper-slide > img{
+        width : 100%;
+    }
+    .swiper-wrapper{
+        height : 500px;
+    }
 `
 
 export default PostDetail;
