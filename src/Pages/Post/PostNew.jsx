@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Masonry from "react-masonry-css";
 import { Link } from "react-router-dom";
 import PostSkeleton from "../../Components/Common/Skeleton/PostSkeleton";
+import Spinner from "../../Components/Common/Spinner/Spinner";
 import './Post.css';
 
 const PostNew = () => {
@@ -72,8 +73,8 @@ const PostNew = () => {
                 ))}
             </Masonry>
         )}
-        <div className="skeleton-post-container" ref={pageEnd}>
-            {PostSkeletonContainer}
+        <div className="loading" ref={pageEnd}>
+            <Spinner />
         </div>
         </>
     );

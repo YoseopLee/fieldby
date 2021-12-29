@@ -17,7 +17,6 @@ const StoreSkeleton = () => {
 
     return (
         <>
-            <div className="skeleton-store-banner"></div>
             <div className="skeleton-store-item-wrapper">
                 {StoreSkeletonContainer}
             </div>

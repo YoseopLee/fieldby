@@ -90,6 +90,10 @@ const NavBarCSS = styled.div`
         font-weight : bold; 
         margin-bottom : 60px;
         text-align : center;
+        :hover{
+            color : #ffffff
+            background-color : #22BAA8;
+        }
     }
 `;
 

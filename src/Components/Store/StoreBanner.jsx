@@ -1,8 +1,11 @@
 import axios from "axios";
 import React, {useState} from "react";
-import { Carousel } from "react-responsive-carousel";
+import SwiperCore, {Autoplay} from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { useEffect } from "react/cjs/react.development";
 import styled from "styled-components";
+
+SwiperCore.use(Autoplay);
 
 const StoreBanner = () => {
     const [storebanners, setStoreBanners] = useState([]);
@@ -21,33 +24,25 @@ const StoreBanner = () => {
 
     return(
         <StoreBannerCSS>
-            <Carousel autoPlay={true}>
+            <Swiper
+                className="store-banner"
+                slidesPerView={1}
+                autoplay = {{delay : 3000}}
+            >
                     {storebanners.map((storebanner) => (
-                        <div key={storebanner.id}>    
-                            <img src={storebanner.image} alt=""/>
-                        </div>    
+                        <SwiperSlide>
+                            <div key={storebanner.id}>    
+                                <img src={storebanner.image} alt="" className="store-banner-image"/>
+                            </div>    
+                        </SwiperSlide>
                     ))}
-            </Carousel>
+            </Swiper>
         </StoreBannerCSS>
     );
 }
 
 const StoreBannerCSS = styled.div`
-    .thumbs-wrapper{
-        display : none;
-    }
-    .control-dots{
-        display : none;
-    }
-    .control-arrow{
-        display : none;
-    }
-    .carousel-status{
-        text-shadow : none;
-        background-color : #747474;
-        right : 5px;
-        border-radius : 9px;
-    }
+    
 `
 
 export default StoreBanner;
