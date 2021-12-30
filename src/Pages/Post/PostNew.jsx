@@ -1,10 +1,21 @@
 import axios from "axios";
+import { cacheAdapterEnhancer } from "axios-extensions";
 import React, { useEffect, useRef, useState } from "react";
 import Masonry from "react-masonry-css";
 import { Link } from "react-router-dom";
 import PostSkeleton from "../../Components/Common/Skeleton/PostSkeleton";
 import Spinner from "../../Components/Common/Spinner/Spinner";
 import './Post.css';
+
+
+const http = axios.create({
+    baseURL : 'https://fair.way.golf/api/v1',
+    Accept : 'application.json',
+    adapter : cacheAdapterEnhancer(
+        axios.defaults.adapter,
+        {enabledByDefault : false}
+    ),
+})
 
 const PostNew = () => {
     const [newPosts, setNewPosts] = React.useState([]);
@@ -13,7 +24,12 @@ const PostNew = () => {
 
     useEffect(() => {
         const getNewPosts = async(pageNumber) => {
-            const json = await axios.get(`https://fair.way.golf/api/v1/post_list/new/?page=${pageNumber}`);
+            const json = await http.get(
+                `/post_list/new/?page=${pageNumber}`,
+                {
+                    cache : true,   
+                },
+            );
             console.log(json.data);
             console.log(json.data.results);
             setNewPosts((prev) => [...prev, ...json.data.results]);

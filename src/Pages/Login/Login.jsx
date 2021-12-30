@@ -96,7 +96,6 @@ const LoginContainerCSS = styled.div`
         justify-content : space-around;
         margin-left : 36px;
         margin-top : 25px;
-        margin-bottom : 50px;
         span{
             font-size : 13px;
         }
