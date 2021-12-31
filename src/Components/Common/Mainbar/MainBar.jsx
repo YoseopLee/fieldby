@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { useGlobalContext } from '../../Context/context';
 
 
 const MainBar = () => {
-    
-    const { openSidebar } = useGlobalContext();
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
+    const openSidebar = () => {
+        setIsSidebarOpen(true);
+    };
+    
     return (
         <MainBarCSS>
             <div className="header">
@@ -15,8 +17,12 @@ const MainBar = () => {
                     <img src="images/fielddbylogo.png" alt="home" className="header-logo"/>
                 </Link>
                 <div className="header-wrapper">
-                    <img src="images/search.png" alt="search" className="header-search"/>
-                    <img src="images/hamburger.png" alt="menu" className="header-menu" onClick={openSidebar}/>
+                    <button>
+                        <img src="images/search.png" alt="search" className="header-search"/>
+                    </button>
+                    <button onClick={openSidebar}>
+                        <img src="images/hamburger.png" alt="menu" className="header-menu"/>
+                    </button>
                 </div>
             </div>
         </MainBarCSS>
@@ -28,13 +34,14 @@ const MainBarCSS = styled.div`
         height: 60px;
         position: fixed;
         top: 0;
-        width: calc(100% - 36px);
+        width: calc(100% - 24px);
         max-width: 600px;
         background-color: #fff;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding-left: 18px;
+        padding-top : 6px;
+        padding-left: 12px;
         padding-right: 18px;
         z-index : 1000;
         .header-logo{
@@ -43,12 +50,16 @@ const MainBarCSS = styled.div`
         .header-wrapper{
             display: flex;
             justify-content: space-between;
-            width: calc(20%);
             .header-search{
                 height: 22px;
             }
             .header-menu{
                 height: 20px;
+            }
+            button {
+                border : none;
+                padding : 2px;
+                background-color : #fff;
             }
         }
     }

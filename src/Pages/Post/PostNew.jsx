@@ -1,7 +1,9 @@
-import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import Masonry from "react-masonry-css";
 import { Link } from "react-router-dom";
+import { http } from "../../Components/Common/Api/CacheAPI";
+import MainBar from "../../Components/Common/Mainbar/MainBar";
+import Navbar from "../../Components/Common/Navbar/Navbar";
 import PostSkeleton from "../../Components/Common/Skeleton/PostSkeleton";
 import Spinner from "../../Components/Common/Spinner/Spinner";
 import './Post.css';
@@ -13,7 +15,12 @@ const PostNew = () => {
 
     useEffect(() => {
         const getNewPosts = async(pageNumber) => {
-            const json = await axios.get(`https://fair.way.golf/api/v1/post_list/new/?page=${pageNumber}`);
+            const json = await http.get(
+                `/post_list/new/?page=${pageNumber}`,
+                {
+                    cache : true,   
+                },
+            );
             console.log(json.data);
             console.log(json.data.results);
             setNewPosts((prev) => [...prev, ...json.data.results]);
@@ -52,6 +59,13 @@ const PostNew = () => {
 
     return (
         <>
+        <MainBar />
+        <Navbar />
+        <div className="tab-wrapper">
+            <Link to="/style"><div className="tab">인기</div></Link>
+            <Link to="/style-new"><div className="new-tab">최신</div></Link>
+            <div className="tab">팔로잉</div>
+        </div>
         {loading ? (
             <div className="skeleton-post-container">
                 {PostSkeletonContainer}

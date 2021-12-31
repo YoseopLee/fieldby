@@ -1,10 +1,10 @@
-import axios from "axios";
 import React from "react"
 import SwiperCore, {Autoplay} from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.scss";
 import { useEffect, useState } from "react/cjs/react.development";
 import styled from "styled-components";
+import { http } from "../Common/Api/CacheAPI";
 
 SwiperCore.use(Autoplay);
 
@@ -13,7 +13,12 @@ const HomeBanner = () => {
 
     useEffect(() => {
         const getHomeBanners = async() => {
-            const json = await axios.get(`https://fair.way.golf/api/v1/homebanners`)
+            const json = await http.get(
+                `/homebanners`,
+                {
+                    cache : true,
+                }
+            )
             setHomeBanners(json.data.results);
         };
         getHomeBanners();

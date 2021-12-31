@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import MainBar from "../../Components/Common/Mainbar/MainBar";
@@ -7,6 +6,7 @@ import Collection from "../../Components/Home/Collection";
 import Footer from "../../Components/Home/Footer";
 import HomeBanner from "../../Components/Home/HomeBanner";
 import Spinner from "../../Components/Common/Spinner/Spinner";
+import { http } from "../../Components/Common/Api/CacheAPI";
 
 
 //axios.defaults.xsrfCookieName="csrftoken";
@@ -21,7 +21,12 @@ const Home = () => {
     useEffect(() => {
         const getCollections = async() => {
             try {
-                const json = await axios.get(`https://fair.way.golf/api/v1/collections/`);
+                const json = await http.get(
+                    `/collections`,
+                    {
+                        cache : true,
+                    }
+                );
                 console.log(json.data);
                 console.log(json.data.results);
                 setCollections(json.data.results);
