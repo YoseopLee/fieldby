@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import MainBar from "../../Components/Common/Mainbar/MainBar";
 import Navbar from "../../Components/Common/Navbar/Navbar";
+import { KAKAO_AUTH_URL } from "../../Components/Login/KaKao/KaKaoAuth";
 
 const Login = () => {
     return (
@@ -21,7 +22,7 @@ const Login = () => {
                     로그인
                 </button>
                 <button className="naver-btn">네이버로 로그인</button>
-                <button className="kakao-btn">카카오로 로그인</button>
+                <a className="kakao-btn" href={KAKAO_AUTH_URL}>카카오로 로그인</a>
             </div>
             <div className="more-container">
                 <span>이메일 가입</span>

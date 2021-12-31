@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import axios from "axios";
 import styled from "styled-components";
 import ItemList from "../../Components/Store/ItemList";
 import StoreBanner from "../../Components/Store/StoreBanner";
@@ -7,6 +6,7 @@ import MainBar from "../../Components/Common/Mainbar/MainBar";
 import Navbar from "../../Components/Common/Navbar/Navbar";
 import Spinner from "../../Components/Common/Spinner/Spinner";
 import StoreSkeleton from "../../Components/Common/Skeleton/StoreSkeleton";
+import { http } from "../../Components/Common/Api/CacheAPI";
 
 
 const Store = () => {
@@ -17,7 +17,12 @@ const Store = () => {
     useEffect(() => {
         const getItemList = async(pageNumber) => {
             try {
-                const json = await axios.get(`https://fair.way.golf/api/v1/item_list/new/?page=${pageNumber}`);
+                const json = await http.get(
+                    `/item_list/new/?page=${pageNumber}`,
+                    {
+                        cache : true,
+                    }        
+                );
                 console.log(json.data);
                 console.log(json.data.results);
                 setItemLists((prev) => [...prev, ...json.data.results]);

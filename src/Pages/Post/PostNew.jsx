@@ -1,21 +1,12 @@
-import axios from "axios";
-import { cacheAdapterEnhancer } from "axios-extensions";
 import React, { useEffect, useRef, useState } from "react";
 import Masonry from "react-masonry-css";
 import { Link } from "react-router-dom";
+import { http } from "../../Components/Common/Api/CacheAPI";
+import MainBar from "../../Components/Common/Mainbar/MainBar";
+import Navbar from "../../Components/Common/Navbar/Navbar";
 import PostSkeleton from "../../Components/Common/Skeleton/PostSkeleton";
 import Spinner from "../../Components/Common/Spinner/Spinner";
 import './Post.css';
-
-
-const http = axios.create({
-    baseURL : 'https://fair.way.golf/api/v1',
-    Accept : 'application.json',
-    adapter : cacheAdapterEnhancer(
-        axios.defaults.adapter,
-        {enabledByDefault : false}
-    ),
-})
 
 const PostNew = () => {
     const [newPosts, setNewPosts] = React.useState([]);
@@ -68,6 +59,13 @@ const PostNew = () => {
 
     return (
         <>
+        <MainBar />
+        <Navbar />
+        <div className="tab-wrapper">
+            <Link to="/style"><div className="tab">인기</div></Link>
+            <Link to="/style-new"><div className="new-tab">최신</div></Link>
+            <div className="tab">팔로잉</div>
+        </div>
         {loading ? (
             <div className="skeleton-post-container">
                 {PostSkeletonContainer}

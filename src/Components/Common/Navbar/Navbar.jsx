@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from "styled-components";
-import { useGlobalContext } from '../../Context/context';
+
 
 const Navbar = () => {
-    
-    const { isSidebarOpen , closeSidebar } = useGlobalContext(); 
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
+    const closeSidebar = () => {
+        setIsSidebarOpen(false);
+    }
+    
     return(
         <NavBarCSS>
             <aside className={`${isSidebarOpen ? 'sidebar show-slider' : 'sidebar'}`}>
@@ -56,7 +59,7 @@ const NavBarCSS = styled.div`
             width : calc(100% - 40px);
             justify-content: flex-end;
             align-items: center;
-            padding: 1.2rem 1.4rem;
+            padding: 1.6rem 1rem;
             .btn-close{
                 height : 20px;
             }

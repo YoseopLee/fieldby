@@ -1,9 +1,9 @@
-import axios from "axios";
 import React, {useState} from "react";
 import SwiperCore, {Autoplay} from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useEffect } from "react/cjs/react.development";
 import styled from "styled-components";
+import { http } from "../Common/Api/CacheAPI";
 
 SwiperCore.use(Autoplay);
 
@@ -13,7 +13,12 @@ const StoreBanner = () => {
     useEffect(() => {
         const getStoreBanners = async() => {
             try {
-                const json = await axios.get(`https://fair.way.golf/api/v1/storebanner/hidden`);
+                const json = await http.get(
+                    `/storebanner/hidden`,
+                    {
+                        cache : true,
+                    }
+                );
                 setStoreBanners(json.data.results);
             } catch (error) {
                 console.log(error);
@@ -42,7 +47,6 @@ const StoreBanner = () => {
 }
 
 const StoreBannerCSS = styled.div`
-    
 `
 
 export default StoreBanner;

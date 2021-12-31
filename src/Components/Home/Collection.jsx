@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react/cjs/react.development';
-import axios from 'axios';
 import CollectionPostDetail from './CollectionPostDetail';
 import CollectionItemDetail from './CollectionItemDetail';
 import styled from 'styled-components';
 import CollectionSkeleton from '../Common/Skeleton/CollectionSkeleton';
+import { http } from '../Common/Api/CacheAPI';
 
 
 const Collection = ({ id, title, contents }) => {
@@ -18,7 +18,12 @@ const Collection = ({ id, title, contents }) => {
         const getCollectionDetails = async() => {
             try {   
                 // get 점검
-                const json = await axios.get(`https://fair.way.golf/api/v1/collections/${id}`);
+                const json = await http.get(
+                    `/collections/${id}`,
+                    {
+                        cache : true,
+                    }
+                );
                 console.log(json.data);
                 setLoading(false);
                 setCollectionStatus(json.data)
