@@ -1,9 +1,9 @@
 import React, { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../../../Redux/Reducers/user";
 import Spinner from "../../Common/Spinner/Spinner";
 
-export const OAuth2RedirectHandler = (props) => {
+export const OAuth2RedirectHandler = () => {
     
     const dispatch = useDispatch();
     
