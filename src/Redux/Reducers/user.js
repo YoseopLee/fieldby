@@ -1,6 +1,7 @@
 import axios from "axios";
 import { createAction, handleActions } from "redux-actions"; 
 import { produce } from "immer";
+import { useNavigate } from "react-router-dom";
 
 // Action type
 const SET_USER = "SET_USER"; // 로그인
@@ -30,7 +31,10 @@ const initialState = {
 
 // 카카오로그인
 const kakaoLogin = (code, user) => {
-    return function (dispatch, getState, {history}){
+
+    
+    return function (dispatch, getState){
+        const navigate = useNavigate();
         axios({
             method:"GET",
             url : `http://localhost:8000/Api/Member/Oauth2ClientCallback/kakao/?code=${code}`,
@@ -46,12 +50,11 @@ const kakaoLogin = (code, user) => {
                 ] = `Bearer ${ACCESS_TOKEN}`;
 
                 dispatch(setUser());
-
-                await history.push("/");
+                await navigate("/");
             })
             .catch((err) => {
                 console.log("소셜로그인 에러", err);
-                history.replace("/login");
+                navigate("/login", {replace : true});
             });
     }
 }

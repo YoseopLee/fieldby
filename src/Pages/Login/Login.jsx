@@ -74,6 +74,7 @@ const LoginContainerCSS = styled.div`
             font-size : 16px;
             font-weight : bold;
             margin-bottom : 8px;
+            margin : 0 0 12px 0;
         }
         .login-btn{
             color : #fff;
@@ -89,6 +90,14 @@ const LoginContainerCSS = styled.div`
         .kakao-btn{
             color : #212121;
             background-color : #ffd400;
+            padding : 16px;
+            outline : none;
+            border : none;
+            border-radius : 12px;
+            font-size : 16px;
+            font-weight : bold;
+            margin-bottom : 8px;
+            text-align : center;
         }
     }
     .more-container{
