@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import MainBar from "../../Components/Common/Mainbar/MainBar";
-import Navbar from "../../Components/Common/Navbar/Navbar";
 import Collection from "../../Components/Home/Collection";
 import Footer from "../../Components/Home/Footer";
 import HomeBanner from "../../Components/Home/HomeBanner";
@@ -41,7 +40,6 @@ const Home = () => {
     return (
         <>
         <MainBar />
-        <Navbar />
         <HomeContainerCSS>
         <HomeBanner />
         {loading ? (

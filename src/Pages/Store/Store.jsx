@@ -3,7 +3,6 @@ import styled from "styled-components";
 import ItemList from "../../Components/Store/ItemList";
 import StoreBanner from "../../Components/Store/StoreBanner";
 import MainBar from "../../Components/Common/Mainbar/MainBar";
-import Navbar from "../../Components/Common/Navbar/Navbar";
 import Spinner from "../../Components/Common/Spinner/Spinner";
 import StoreSkeleton from "../../Components/Common/Skeleton/StoreSkeleton";
 import { http } from "../../Components/Common/Api/CacheAPI";
@@ -56,7 +55,6 @@ const Store = () => {
     return (
         <>
         <MainBar />
-        <Navbar />
         {loading ? (
             <StoreSkeleton />
         ) : (

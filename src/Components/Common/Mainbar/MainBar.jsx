@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { SidebarData } from './MainbarData';
+import './Mainbar.css';
 
 
 const MainBar = () => {
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [sidebar, setSidebar] = useState(false);
+    const [black, setBlack] = useState(false);
 
-    const openSidebar = () => {
-        setIsSidebarOpen(true);
-    };
+    const showSidebar = () => {
+        setSidebar(!sidebar)
+        setBlack(!black)
+    }
     
     return (
         <MainBarCSS>
@@ -20,11 +24,35 @@ const MainBar = () => {
                     <button>
                         <img src="images/search.png" alt="search" className="header-search"/>
                     </button>
-                    <button onClick={openSidebar}>
-                        <img src="images/hamburger.png" alt="menu" className="header-menu"/>
+                    <button>
+                        <img src="images/hamburger.png" alt="menu" className="header-menu" onClick={showSidebar}/>
                     </button>
                 </div>
             </div>
+            <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
+                <ul className='nav-menu-items' onClick={showSidebar}>
+                    <li className='navbar-toggle'>
+                        <Link to="#" className='menu-bars'>
+                            <img src="images/close.png" alt="close" className="btn-close" onClick={showSidebar}/>
+                        </Link>
+                    </li>
+                    {SidebarData.map((item, index) => {
+                        return (
+                            <li key={index} className={item.cName}>
+                                <Link to={item.path}>
+                                    <span>{item.title}</span>
+                                </Link>
+                            </li>
+                        )
+                    })}
+                </ul>
+                <Link to="/login">
+                    <div className="login-container">
+                        <div className="login-area" onClick={showSidebar}>로그인</div>    
+                    </div>           
+                </Link>
+            </nav>
+            <div className={black ? 'black active' : 'black'} onClick={showSidebar}></div>
         </MainBarCSS>
     );
 }

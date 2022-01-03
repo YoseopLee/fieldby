@@ -1,14 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import MainBar from "../../Components/Common/Mainbar/MainBar";
-import Navbar from "../../Components/Common/Navbar/Navbar";
 import { KAKAO_AUTH_URL } from "../../Components/Login/KaKao/KaKaoAuth";
 
 const Login = () => {
     return (
         <>
         <MainBar />
-        <Navbar />
         <LoginContainerCSS>
             <div className="header">
                 <img src="images/fielddbylogo.png" alt="" className="header-logo"/>
