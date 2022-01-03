@@ -1,7 +1,9 @@
 import axios from "axios";
 import { createAction, handleActions } from "redux-actions"; 
 import { produce } from "immer";
-import { useNavigate } from "react-router-dom";
+import { history } from "../configureStore";
+import { setCookie, deleteCookie, getCookie } from "../../Components/Common/Cookie/Cookie"; 
+
 
 // Action type
 const SET_USER = "SET_USER"; // 로그인
@@ -30,18 +32,17 @@ const initialState = {
 };
 
 // 카카오로그인
-const kakaoLogin = (code, user) => {
-
+function KakaoLogin (code, user) {
     
-    return function (dispatch, getState){
-        const navigate = useNavigate();
+        return function (dispatch){
+                
         axios({
             method:"GET",
-            url : `http://localhost:8000/Api/Member/Oauth2ClientCallback/kakao/?code=${code}`,
+            url : `https://fieldby.me/Api/Member/Oauth2ClientCallback/kakao/?code=${code}`,
         })
-            .then(async(res) => {
-                console.log(res.data.accessToken);
-                const ACCESS_TOKEN = res.data.accessToken;
+            .then(async(response) => {
+                console.log(response.accessToken);
+                const ACCESS_TOKEN = response.accessToken;
 
                 await localStorage.setItem("token", ACCESS_TOKEN);
 
@@ -50,11 +51,13 @@ const kakaoLogin = (code, user) => {
                 ] = `Bearer ${ACCESS_TOKEN}`;
 
                 dispatch(setUser());
-                await navigate("/");
+                await history.push('/'); 
+                window.location.reload();          
             })
             .catch((err) => {
                 console.log("소셜로그인 에러", err);
-                navigate("/login", {replace : true});
+                history.replace('/login');
+                window.location.reload();
             });
     }
 }
@@ -77,7 +80,7 @@ export default handleActions(
 
 const actionCreators = {
     setUser,
-    kakaoLogin,
+    KakaoLogin,
 };
 
 export { actionCreators };

@@ -3,8 +3,10 @@ import thunk from "redux-thunk";
 import { createBrowserHistory } from "history";
 
 import User from "./Reducers/user";
-export const history = createBrowserHistory();
-
+export const history = createBrowserHistory({
+    forceRefresh : true
+});
+    
 const rootReducer = combineReducers({
     user : User,
 });

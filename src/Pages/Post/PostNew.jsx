@@ -3,7 +3,6 @@ import Masonry from "react-masonry-css";
 import { Link } from "react-router-dom";
 import { http } from "../../Components/Common/Api/CacheAPI";
 import MainBar from "../../Components/Common/Mainbar/MainBar";
-import Navbar from "../../Components/Common/Navbar/Navbar";
 import PostSkeleton from "../../Components/Common/Skeleton/PostSkeleton";
 import Spinner from "../../Components/Common/Spinner/Spinner";
 import './Post.css';
@@ -60,7 +59,6 @@ const PostNew = () => {
     return (
         <>
         <MainBar />
-        <Navbar />
         <div className="tab-wrapper">
             <Link to="/style"><div className="tab">인기</div></Link>
             <Link to="/style-new"><div className="new-tab">최신</div></Link>

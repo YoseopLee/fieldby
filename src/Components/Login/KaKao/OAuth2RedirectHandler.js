@@ -6,12 +6,12 @@ import Spinner from "../../Common/Spinner/Spinner";
 export const OAuth2RedirectHandler = () => {
     
     const dispatch = useDispatch();
-    
     // 인가코드
     let code = new URL(window.location.href).searchParams.get("code");
 
     useEffect(async() => {
-        await dispatch(userActions.kakaoLogin(code));
+        await dispatch(userActions.KakaoLogin(code));
+        
     }, []);
 
     return <Spinner />
