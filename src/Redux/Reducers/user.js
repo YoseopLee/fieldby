@@ -31,24 +31,70 @@ const initialState = {
   auth_check: false,
 };
 
+// 로그인 연장 함수 (백단 구현 중)
+const extensionAccess = (state) => {
+    return function (dispatch, getState){
+        const accessToken = localStorage.getItem("token");
+        const refreshToken = getCookie("is_login");
+
+        axios({
+            method: "POST",
+            url : `https://fieldby.me/reissue`,
+            data : {
+                accessToken : accessToken,
+                refreshToken : refreshToken,
+            },
+            headers : {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        })
+            .then(async (res) => {
+                const ACCESS_TOKEN = res.data.accessToken;
+                const REFRESH_TOKEN = res.data.refreshToken;
+                const ACCESS_TOKEN_EXP = res.data.accessTokenExPiresIn;
+
+
+            })
+    }
+}
+
 // 카카오로그인
 function KakaoLogin (code, user) {
     
-        return function (dispatch){
+        return function (dispatch, getState){
                 
         axios({
             method:"GET",
             url : `https://fieldby.me/Api/Member/Oauth2ClientCallback/kakao/?code=${code}`,
         })
             .then(async(response) => {
-                console.log(response.accessToken);
-                const ACCESS_TOKEN = response.accessToken;
+                console.log(response.data.access_token);
+                const ACCESS_TOKEN = (response.data.access_token); // 토큰 담음
+                const ACCESS_TOKEN_EXP = (response.data.expires_in);
+                const REFRESH_TOKEN = (response.data.refresh_token);
 
-                await localStorage.setItem("token", ACCESS_TOKEN);
+                // refresh Token 쿠키에 저장
+                await setCookie("is_login", REFRESH_TOKEN);
 
+                await localStorage.setItem('token', ACCESS_TOKEN);
+
+                // 현재시간
+                const Current_time = new Date().getTime();
+
+                // Header Configuration
                 axios.defaults.headers.common[
                     "Authorization"
                 ] = `Bearer ${ACCESS_TOKEN}`;
+
+                const state = getState().user.is_login;
+
+                // 토큰 만료 1분 전 자동연장
+                setTimeout(
+                    extensionAccess(state),
+                    ACCESS_TOKEN_EXP - Current_time - 60000
+                );
+                
+                await alert("환영합니다!")
 
                 dispatch(setUser());
                 await history.push('/'); 
@@ -62,6 +108,28 @@ function KakaoLogin (code, user) {
     }
 }
 
+// 유저 정보 불러오기
+const getUserSV = () => {
+    return function(dispatch, getState){
+        const ACCESS_TOKEN = localStorage.getItem("token");
+
+        axios({
+            method : "GET",
+            url: ``,
+            headers: {
+                Authorization: `Bearer ${ACCESS_TOKEN}`,
+            },
+        })
+            .then(() => {
+                dispatch(getUser());
+            })
+            .catch((err) => {
+                console.log("유저 정보 가져오기 실패", err)
+            });
+    };
+};
+
+
 export default handleActions(
     {
         [SET_USER]:(state, action) =>
@@ -74,6 +142,14 @@ export default handleActions(
                 draft.user = action.payload.username;
                 draft.is_login = true;
             }),
+        [LOG_OUT]:(state, action) =>
+            produce(state, (draft) => {
+                // delete cookie
+                deleteCookie("is_login");
+                // localStorage clear
+                localStorage.clear();
+                draft.is_login = false;
+            }),
     },
     initialState
 );
@@ -81,6 +157,7 @@ export default handleActions(
 const actionCreators = {
     setUser,
     KakaoLogin,
+    logOut,
 };
 
 export { actionCreators };

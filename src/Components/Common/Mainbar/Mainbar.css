@@ -8,7 +8,6 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     position: fixed;
     top: 0;
     left: 105%;
@@ -24,17 +23,20 @@
   
 .nav-text {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
     list-style: none;
-    height: 70px;
-    border-bottom: 1px solid;
+    height: 60px;
+    border-bottom: 1px solid #dcdcdc;
+}
+.nav-text:last-child{
+    border-bottom: none;
 }
   
 .nav-text a {
     text-decoration: none;
     color: #000;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     width: 95%;
     height: 100%;
@@ -53,15 +55,16 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding : 24px;
+    padding : 18px;
 }
   
 span {
-    margin-left: 16px;
+    margin-left: 8px;
 }
 
 .login-container{
     margin-left : 40px;
+    margin-top : 80px;
     width : calc(100% - 80px);
 }
 .login-area{
@@ -88,4 +91,20 @@ span {
     position: fixed;
     transition: 300ms;
     z-index: 9000;
+}
+.logout{
+    padding: 12px 0 0 20px;
+}
+.logout-btn{
+    margin-top: 8px;
+    font-size: 14px;
+    letter-spacing: -.21px;
+    color: #f15746;
+    padding : 0;
+    border: 0;
+    outline: none;
+    background: none;
+    background-color: rgba(0,0,0,0);
+    appearance: none;
+    border-radius: 0;
 }

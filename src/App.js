@@ -3,7 +3,7 @@ import {
   Route,
   BrowserRouter,
 } from "react-router-dom";
-import { OAuth2RedirectHandler } from "./Components/Login/KaKao/OAuth2RedirectHandler";
+import OAuth2RedirectHandler from "./Components/Login/KaKao/OAuth2RedirectHandler";
 
 import Home from "./Pages/Home/Home";
 import Item from "./Pages/Item/Item";
