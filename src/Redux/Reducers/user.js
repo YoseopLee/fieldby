@@ -39,7 +39,7 @@ const extensionAccess = (state) => {
 
         axios({
             method: "POST",
-            url : `https://fieldby.me/reissue`,
+            url : `https://fieldby.me/reissue`, // /reissue refresh_Token 발급서버 필요.
             data : {
                 accessToken : accessToken,
                 refreshToken : refreshToken,
@@ -52,8 +52,6 @@ const extensionAccess = (state) => {
                 const ACCESS_TOKEN = res.data.accessToken;
                 const REFRESH_TOKEN = res.data.refreshToken;
                 const ACCESS_TOKEN_EXP = res.data.accessTokenExPiresIn;
-
-
             })
     }
 }
