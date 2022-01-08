@@ -31,6 +31,58 @@ const initialState = {
   auth_check: false,
 };
 
+// 자체 로그인
+const loginSV = (email, pwd) => {
+    return function(dispatch, getState){
+        axios({
+            method : "POST",
+            url : ``,
+
+            data:{
+                email : email,
+                password : pwd,
+            },
+        })
+            .then(async(res) => {
+                const ACCESS_TOKEN = res.data.accessToken;
+                const ACCESS_TOKEN_EXP =  res.data.accessTokenExPiresIn;
+                const REFRESH_TOKEN =  res.data.refreshToken;
+
+                // cookie에 RefreshToken 저장 (아직 httpOnly 설정 못함)
+                await setCookie("is_login", REFRESH_TOKEN);
+
+                // local에 AccessToken저장
+                await localStorage.setItem("token", ACCESS_TOKEN);
+
+                // accessToken default 설정
+                axios.defaults.headers.common[
+                    "Authorization"
+                ] = `Bearer ${ACCESS_TOKEN}`;
+
+                const Current_time = new Date().user.is_login;
+
+                const state = getState().user.is_login;
+
+                // ACCESS_TOKEN 만료 1분 전마다 연장함수 실행
+                setTimeout(
+                    extensionAccess(state),
+                    ACCESS_TOKEN_EXP - Current_time - 60000
+                );
+
+                await alert("환영합니다!")
+
+                dispatch(setUser());
+                await history.push('/');
+                window.location.reload();
+            })
+                .catch((err) => {
+                    alert("로그인 실패!")
+                    console.log("로그인 실패", err);
+                    history.replace('/login');
+                });
+    }
+}
+
 // 로그인 연장 함수 (백단 구현 중)
 const extensionAccess = (state) => {
     return function (dispatch, getState){
@@ -52,9 +104,57 @@ const extensionAccess = (state) => {
                 const ACCESS_TOKEN = res.data.accessToken;
                 const REFRESH_TOKEN = res.data.refreshToken;
                 const ACCESS_TOKEN_EXP = res.data.accessTokenExPiresIn;
+
+                // 새롭게 받은 refreshToken도 cookie에 다시 저장
+                await setCookie("is_login", REFRESH_TOKEN);
+
+                // 새롭게 받은 ACCESS_TOKEN 헤더에 담기
+                axios.defaults.headers.common[
+                    "Authorization"
+                ] = `Bearer ${ACCESS_TOKEN}`;
+
+                const Current_time = new Date().getTime();
+
+                // 로그인 상태 true로 변경
+                state = true;
+
+                // 1분 전 자동실행
+                setTimeout(
+                    extensionAccess(state),
+                    ACCESS_TOKEN_EXP - Current_time - 60000 * 29
+                );
+                return;
             })
-    }
-}
+            .catch((err) => {
+                console.log("연장실패", err);
+            });
+    };
+};
+// 회원가입
+const signUpSV = (email, nickname, pwd, pwdCheck) => {
+    return function(dispatch, getState){
+        axios({
+            method : "POST",
+            url : ``,
+            data : {
+                email : email,
+                password : pwd,
+                passwordCheck : pwdCheck,
+                username : nickname,
+            },
+        })
+            .then((res) => {
+                alert("회원가입이 완료되었습니다")
+                history.replace("/login");
+            })
+            .catch((err) => {
+                console.log("회원가입 실패", err);
+            });
+    };
+};
+
+// 네이버 로그인
+
 
 // 카카오로그인
 function KakaoLogin (code, user) {

@@ -9,18 +9,16 @@ const DetailBar = () => {
 
     return (
         <DetailBarCSS>
-            <img 
-                src="/images/arrowleft.png"
-                alt="back"
-                className="back-logo" 
-                onClick={() => goBack(-1)}
-            />
+            <span 
+                className="back-btn"
+                onClick={() => goBack(-1)}    
+            >뒤로</span>
         </DetailBarCSS>
     );
 };
 
 const DetailBarCSS = styled.div`
-    height : 60px;
+    height : 55px;
     position : fixed;
     top : 0;
     width : 100%;
@@ -32,6 +30,10 @@ const DetailBarCSS = styled.div`
     align-items : center;
     .back-logo{
         height : 24px;
+    }
+    .back-btn{
+        font-size : 13px;
+        color : #766F6F;
     }
 `
 

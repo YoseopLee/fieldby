@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router";
 import { useEffect } from "react/cjs/react.development";
 import styled from "styled-components";
+import { http } from "../../Components/Common/Api/CacheAPI";
 import DetailBar from "../../Components/Common/Detailbar/DetailBar";
 import ItemDetail from "../../Components/Item/ItemDetail";
 
@@ -12,7 +13,12 @@ const Item = () => {
     useEffect(() => {
         const getItems = async() => {
             try {
-                const json = await axios.get(`https://fair.way.golf/api/v1/items/${id}/`);
+                const json = await http.get(
+                    `/items/${id}/`,
+                    {
+                        cache : true,
+                    }
+                );
                 console.log(json.data);
                 setItem(json.data);
             } catch (error) {
