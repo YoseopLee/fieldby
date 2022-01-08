@@ -13,79 +13,82 @@ const PostDetail = ({ coverImg, coverImg2, coverImg3, coverImg4, coverImg5, cove
         <PostDetailCSS>
             <Swiper
                 className='post-swiper'
-                pagination={{clickable : true}}
+                pagination={true}
             >
                 {coverImg !== null ? (
                     <SwiperSlide>
-                        <img src={coverImg} alt=""/> 
+                        <div className='post-each-image' style={{backgroundImage: `url(${coverImg})`}}></div> 
                     </SwiperSlide>
                 ) : (
                     null
                 )}
                 {coverImg2 !== null ? (
                     <SwiperSlide>
-                        <img src={coverImg2} alt=""/> 
+                        <div className='post-each-image' style={{backgroundImage: `url(${coverImg2})`}}></div> 
                     </SwiperSlide>
                 ) : (
                     null
                 )} 
                 {coverImg3 !== null ? (
                     <SwiperSlide>
-                        <img src={coverImg3} alt=""/> 
+                        <div className='post-each-image' style={{backgroundImage: `url(${coverImg3})`}}></div> 
                     </SwiperSlide>
                 ) : (
                     null
                 )}
                 {coverImg4 !== null ? (
                     <SwiperSlide>
-                        <img src={coverImg4} alt=""/> 
+                        <div className='post-each-image' style={{backgroundImage: `url(${coverImg4})`}}></div>  
                     </SwiperSlide>
                 ) : (
                     null
                 )}
                 {coverImg5 !== null ? (
                     <SwiperSlide>
-                        <img src={coverImg5} alt=""/> 
+                        <div className='post-each-image' style={{backgroundImage: `url(${coverImg5})`}}></div> 
                     </SwiperSlide>
                 ) : (
                     null
                 )}
                 {coverImg6 !== null ? (
                     <SwiperSlide>
-                        <img src={coverImg6} alt=""/> 
+                        <div className='post-each-image' style={{backgroundImage: `url(${coverImg6})`}}></div> 
                     </SwiperSlide>
                 ) : (
                     null
                 )}
                 {coverImg7 !== null ? (
                     <SwiperSlide>
-                        <img src={coverImg7} alt=""/> 
+                        <div className='post-each-image' style={{backgroundImage: `url(${coverImg7})`}}></div> 
                     </SwiperSlide>
                 ) : (
                     null
                 )}
                 {coverImg8 !== null ? (
                     <SwiperSlide>
-                        <img src={coverImg8} alt=""/> 
+                        <div className='post-each-image' style={{backgroundImage: `url(${coverImg8})`}}></div> 
                     </SwiperSlide>
                 ) : (
                     null
                 )}
                 {coverImg9 !== null ? (
                     <SwiperSlide>
-                        <img src={coverImg9} alt=""/> 
+                        <div className='post-each-image' style={{backgroundImage: `url(${coverImg9})`}}></div> 
                     </SwiperSlide>
                 ) : (
                     null
                 )}
                 {coverImg10 !== null ? (
                     <SwiperSlide>
-                        <img src={coverImg10} alt=""/> 
+                        <div className='post-each-image' style={{backgroundImage: `url(${coverImg10})`}}></div> 
                     </SwiperSlide>
                 ) : (
                     null
                 )}
             </Swiper>
+            <div className="post-items">
+                
+            </div>
             <p>{text}</p>
         </PostDetailCSS>
     )
@@ -103,11 +106,26 @@ PostDetail.propTypes = {
 }
 
 const PostDetailCSS = styled.div`
-    .swiper-slide > img{
-        width : 100%;
+    .swiper-container{
+        overflow : inherit;
+        .swiper-wrapper{
+        }
+        .swiper-pagination{
+            bottom : -24px;
+        }
     }
-    .swiper-wrapper{
-        height : 500px;
+    .swiper-pagination-bullet{
+        height : 6px;
+        width : 6px;
+    }
+    .swiper-pagination-bullet-active{
+        background : #212121;
+    }
+    .swiper-slide > div{
+        background-size : cover;
+        background-position : center;
+        background-repeat : no-repeat;
+        height : 430px;
     }
 `
 
