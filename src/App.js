@@ -4,6 +4,7 @@ import {
   BrowserRouter,
 } from "react-router-dom";
 import OAuth2RedirectHandler from "./Components/Login/KaKao/OAuth2RedirectHandler";
+import OAuth2RedirectHandlerNaver from "./Components/Login/Naver/OAuth2RedirectHandlerNaver";
 
 import Home from "./Pages/Home/Home";
 import Item from "./Pages/Item/Item";
@@ -26,6 +27,7 @@ function App() {
         <Route path="/item/:id" element={<Item/>} />
         <Route path="/login" element={<Login />} />
         <Route path="/Api/Member/Oauth2ClientCallback/kakao/" element={<OAuth2RedirectHandler />}/>
+        <Route path="/Api/Member/Oauth2ClientCallback/naver/" element={<OAuth2RedirectHandlerNaver />} />
       </Routes>
     </BrowserRouter>
   );

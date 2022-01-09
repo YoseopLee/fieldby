@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import styled from "styled-components"
 import { http } from "../../Components/Common/Api/CacheAPI";
 import DetailBar from "../../Components/Common/Detailbar/DetailBar"
+import PostContents from "../../Components/Post/PostContents";
 import PostDetail from "../../Components/Post/PostDetail";
 import PostItems from "../../Components/Post/PostItems";
 import PostUser from "../../Components/Post/PostUser";
@@ -58,7 +59,7 @@ const PostEach = () => {
                 coverImg8={postEach.image8}
                 coverImg9={postEach.image9}
                 coverImg10={postEach.image10}
-                text={postEach.text}
+                
             />
             <div className="post-item-container">
                 {postEachItems.map((postEachItem)=> (
@@ -71,6 +72,9 @@ const PostEach = () => {
                     />
                 ))}
             </div>
+            <PostContents
+                text={postEach.text}
+            />
         </PostEachCSS>
         </>
     )
