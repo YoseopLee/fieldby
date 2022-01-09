@@ -20,8 +20,14 @@ const Login = () => {
                 <button className="login-btn">
                     로그인
                 </button>
-                <a className="naver-btn" href={NAVER_AUTH_URL}>네이버로 로그인</a>
-                <a className="kakao-btn" href={KAKAO_AUTH_URL}>카카오로 로그인</a>
+                <a className="naver-btn" href={NAVER_AUTH_URL}>
+                    <img src="images/btn_naver.png" alt="" className="btn-naver"/>
+                    네이버 로그인
+                </a>
+                <a className="kakao-btn" href={KAKAO_AUTH_URL}>
+                    <img src="images/kakaolink_btn_small.png" alt="" className="btn-kakao"/>
+                    카카오 로그인
+                </a>
             </div>
             <div className="more-container">
                 <span>이메일 가입</span>
@@ -84,19 +90,25 @@ const LoginContainerCSS = styled.div`
         }
         .naver-btn{
             color : #fff;
-            background-color : #5AC451;
-            padding : 16px;
+            background-color : #03C75A;
             outline : none;
             border : none;
             border-radius : 12px;
+            padding : 8px;
             font-size : 16px;
             font-weight : bold;
             margin-bottom : 8px;
             text-align : center;
+            align-items : center;
+            display : flex;
+            justify-content : center;
+            .btn-naver{
+                height : 40px;
+            }
         }
         .kakao-btn{
             color : #212121;
-            background-color : #ffd400;
+            background-color : #fee500;
             padding : 16px;
             outline : none;
             border : none;
@@ -105,6 +117,13 @@ const LoginContainerCSS = styled.div`
             font-weight : bold;
             margin-bottom : 8px;
             text-align : center;
+            display : flex;
+            align-items : center;
+            justify-content : center;
+            .btn-kakao {
+                height : 24px;
+                margin-right : 8px;
+            }
         }
     }
     .more-container{
