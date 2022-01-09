@@ -24,23 +24,25 @@ const PostItemsContainerCSS = styled.div`
         display : flex;
         align-items : center;
         width : auto;
-        padding : 8px;
     }
     border : 1px solid rgba(0, 0, 0, 0.11);
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.11);
     background-color : #fff;
     border-radius: 14px;
     margin-right : 10px;
+    padding-right : 12px;
     .post-item-thumbnail{
-        width : 60px;
-        height : 60px;
+        width : 80px;
+        height : 80px;
         .post-item-thumbnail-img{
             width : 100%;
             height : 100%;
+            border-radius : 13px 0 0 13px;
         }
     }
     .post-item-wrapper{
-        padding-left : 10px;
+        padding-left : 12px;
+        white-space : normal;
         .post-item-brand{
             font-weight : 700;
             font-size : 12px;

@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import MainBar from "../../Components/Common/Mainbar/MainBar";
 import { KAKAO_AUTH_URL } from "../../Components/Login/KaKao/KaKaoAuth";
+import { NAVER_AUTH_URL } from "../../Components/Login/Naver/NaverAuth";
 
 const Login = () => {
     return (
@@ -19,7 +20,7 @@ const Login = () => {
                 <button className="login-btn">
                     로그인
                 </button>
-                <button className="naver-btn">네이버로 로그인</button>
+                <a className="naver-btn" href={NAVER_AUTH_URL}>네이버로 로그인</a>
                 <a className="kakao-btn" href={KAKAO_AUTH_URL}>카카오로 로그인</a>
             </div>
             <div className="more-container">
@@ -84,6 +85,14 @@ const LoginContainerCSS = styled.div`
         .naver-btn{
             color : #fff;
             background-color : #5AC451;
+            padding : 16px;
+            outline : none;
+            border : none;
+            border-radius : 12px;
+            font-size : 16px;
+            font-weight : bold;
+            margin-bottom : 8px;
+            text-align : center;
         }
         .kakao-btn{
             color : #212121;

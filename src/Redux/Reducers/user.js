@@ -154,6 +154,51 @@ const signUpSV = (email, nickname, pwd, pwdCheck) => {
 };
 
 // 네이버 로그인
+function NaverLogin (code, user){
+    return function (dispatch, getState){
+    
+        axios({
+            method : "GET",
+            url : `https://fieldby.me/Api/Member/Oauth2ClientCallback/naver/?code=${code}`
+        })
+            .then(async(response) =>{
+                console.log(response.data.access_token);
+                const ACCESS_TOKEN = (response.data.access_token); // token set from Naver
+                const ACCESS_TOKEN_EXP = (response.data.expires_in);
+                const REFRESH_TOKEN = (response.data.refresh_token);
+
+                // refresh_token set in cookie , login 상태 구분
+                await setCookie("is_login", REFRESH_TOKEN);
+
+                await localStorage.setItem('token', ACCESS_TOKEN);
+
+                // current time
+                const Current_time = new Date().getTime();
+
+                // Header Configuration
+                axios.defaults.headers.common[
+                    "Authorization"
+                ] = `Bearer ${ACCESS_TOKEN}`;
+                
+                const state = getState().user.is_login;
+
+                // 토큰 만료 1분 전 자동연장
+                setTimeout(
+                    extensionAccess(state),
+                    ACCESS_TOKEN_EXP - Current_time - 60000
+                );
+
+                await alert("환영합니다")
+
+                dispatch(setUser());
+                await history.push('/');
+                window.location.reload();
+            })
+            .catch((err) => {
+                console.log("Fail Naver Login", err);
+            });
+    }
+}
 
 
 // 카카오로그인
@@ -256,6 +301,7 @@ const actionCreators = {
     setUser,
     KakaoLogin,
     logOut,
+    NaverLogin,
 };
 
 export { actionCreators };

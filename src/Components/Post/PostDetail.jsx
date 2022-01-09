@@ -8,7 +8,7 @@ import styled from 'styled-components';
 
 SwiperCore.use(Pagination);
 
-const PostDetail = ({ coverImg, coverImg2, coverImg3, coverImg4, coverImg5, coverImg6, coverImg7, coverImg8, coverImg9, coverImg10 ,text }) => {
+const PostDetail = ({ coverImg, coverImg2, coverImg3, coverImg4, coverImg5, coverImg6, coverImg7, coverImg8, coverImg9, coverImg10 }) => {
     return (
         <PostDetailCSS>
             <Swiper
@@ -86,10 +86,6 @@ const PostDetail = ({ coverImg, coverImg2, coverImg3, coverImg4, coverImg5, cove
                     null
                 )}
             </Swiper>
-            <div className="post-items">
-                
-            </div>
-            <p>{text}</p>
         </PostDetailCSS>
     )
 };
