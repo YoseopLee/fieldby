@@ -16,7 +16,7 @@ const NAME_CHANGE = "NAGE_CHANGE" // 회원명 변경
 
 // 액션 생성함수
 const setUser = createAction(SET_USER, () => ({}));
-const getUser = createAction(GET_USER, (username) => ({username}));
+const getUser = createAction(GET_USER, () => ({}));
 const logOut = createAction(LOG_OUT, () => ({}));
 const nameCheck = createAction(NAME_CHECK, (name_check) => ({ name_check }));
 const authCheck = createAction(AUTH_CHECK, (auth_check) => ({ auth_check }));
@@ -204,23 +204,24 @@ function NaverLogin (code, user){
 // 카카오로그인
 function KakaoLogin (code, user) {
     
-        return function (dispatch, getState){
-                
+    return function (dispatch, getState){
+            
         axios({
             method:"GET",
-            url : `https://fieldby.me/Api/Member/Oauth2ClientCallback/kakao/?code=${code}`,
+            url : `http://localhost:8000/Api/Member/Oauth2ClientCallback/kakao/?code=${code}`,
         })
             .then(async(response) => {
                 console.log(response.data.access_token);
                 const ACCESS_TOKEN = (response.data.access_token); // 토큰 담음
                 const ACCESS_TOKEN_EXP = (response.data.expires_in);
                 const REFRESH_TOKEN = (response.data.refresh_token);
-
+                
+                
                 // refresh Token 쿠키에 저장
                 await setCookie("is_login", REFRESH_TOKEN);
 
                 await localStorage.setItem('token', ACCESS_TOKEN);
-
+                
                 // 현재시간
                 const Current_time = new Date().getTime();
 
@@ -251,7 +252,7 @@ function KakaoLogin (code, user) {
     }
 }
 
-// 유저 정보 불러오기
+// 유저 정보 불러오기 
 const getUserSV = () => {
     return function(dispatch, getState){
         const ACCESS_TOKEN = localStorage.getItem("token");
@@ -263,8 +264,9 @@ const getUserSV = () => {
                 Authorization: `Bearer ${ACCESS_TOKEN}`,
             },
         })
-            .then(() => {
-                dispatch(getUser());
+            .then((response) => {
+                console.log(response.data);
+                dispatch(getUser(response.data.id));
             })
             .catch((err) => {
                 console.log("유저 정보 가져오기 실패", err)
@@ -302,6 +304,7 @@ const actionCreators = {
     KakaoLogin,
     logOut,
     NaverLogin,
+    getUserSV,
 };
 
 export { actionCreators };
